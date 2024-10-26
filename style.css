@@ -1,0 +1,122 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue';
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: white transparent;
+}
+
+html,
+body {
+  overflow: hidden;
+}
+
+body {
+  height: 100dvh;
+  display: flex;
+  flex-wrap: wrap;
+  place-content: center;
+  background-color: black;
+  zoom: 2.5;
+
+  @media (width <=1111px) {
+    zoom: 1.5;
+  }
+}
+
+.container-items {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  display: flex;
+  flex-wrap: wrap;
+  place-content: center;
+
+  &:hover {
+    a {
+      transform: translate(calc(var(--x) * 32px), calc(var(--y) * 32px)) scale(4);
+
+
+      img {
+        opacity: 1;
+      }
+    }
+
+    .toggleButton {
+      transform: translate(-50%, -50%) scale(4);
+
+      div {
+        opacity: 1;
+        transform: rotate(0deg);
+      }
+    }
+  }
+
+  .container-subitems {
+    position: relative;
+    width: 5px;
+    height: 5px;
+  }
+
+  a {
+    position: absolute;
+    display: block;
+    width: 5px;
+    height: 5px;
+    border: .1px solid var(--clr);
+    transition: transform .7s linear;
+    transform: translate(calc(var(--x) * 16px), calc(var(--y) * 16px)) scale(1);
+    transition-delay: calc(var(--y) * 0.1s);
+
+    &:hover {
+      box-shadow: 0 0 10px 0 var(--clr), 0 0 20px 0 var(--clr), 0 0 50px 0 var(--clr);
+    }
+
+    img {
+      transition: opacity .7s ease;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      object-fit: cover;
+      opacity: 0;
+      transform: scale(.5);
+    }
+  }
+
+
+  .toggleButton {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transition: transform .7s linear;
+    transform: translate(-50%, -50%);
+    width: 5px;
+    height: 5px;
+    outline: none;
+    border: none;
+    border: 3px solid var(--clr);
+    display: grid;
+    place-content: center;
+
+    div {
+      position: relative;
+      transition: opacity .7s linear, transform .7s linear;
+      opacity: 0;
+      transform: rotate(-270deg);
+      font-size: .2rem;
+      pointer-events: none;
+    }
+  }
+}
